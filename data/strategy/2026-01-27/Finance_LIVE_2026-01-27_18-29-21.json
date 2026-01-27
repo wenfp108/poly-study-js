@@ -1,0 +1,24 @@
+[
+  {
+    "info": "No active markets found",
+    "debug": [
+      "Task Start: Generated 16 queries",
+      "[ERROR] \"What will Gold (GC) settle at in January?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"What will Gold (GC) hit__ by end of January?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"Fed decision in January?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"What price will Bitcoin hit in January?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"What will Gold (GC) settle at in February?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"What will Gold (GC) hit__ by end of February?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"Fed decision in February?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"What price will Bitcoin hit in February?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"How many Fed rate cuts in 2026?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"Bitcoin all time high by ___?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"Bitcoin price on January 27?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"Bitcoin above ___ on January 27?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"Bitcoin price on January 28?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"Bitcoin above ___ on January 28?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"Bitcoin price on January 29?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net",
+      "[ERROR] \"Bitcoin above ___ on January 29?\" - getaddrinfo ENOTFOUND p6o7n0849h-dsn.algolia.net"
+    ]
+  }
+]
