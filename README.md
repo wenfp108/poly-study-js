@@ -1,4 +1,4 @@
-# 🌍 Macro Scouter (宏观信号监测哨兵) v2.0
+# 🌍 Macro Scouter (宏观信号监测哨兵) 
 
 > **"Data is the new oil, but signal is the new gold."**
 > 一个基于 Polymarket 预测市场的自动化宏观经济监测系统。**大师策略加持，双引擎驱动，高信噪比。**
