@@ -1,0 +1,51 @@
+name: 🏦 Central Bank Harvest
+
+on:
+  workflow_run:
+    workflows: ["⚔️ PolyData Dual-Engine System"]
+    types:
+      - completed
+
+jobs:
+  harvest_and_cleanup:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Scraper Repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.MY_PAT }} # 使用你的 PAT 以便能推送回当前仓库
+
+      - name: Checkout Central Bank
+        uses: actions/checkout@v4
+        with:
+          repository: wenfp108/Central-Bank
+          token: ${{ secrets.MY_PAT }}
+          path: central_bank
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 🏦 Execute Harvest
+        run: node scripts/archive-poly-to-bank.js
+
+      - name: 📤 Push to Central Bank
+        run: |
+          cd central_bank
+          git config --global user.name 'Architect Bot'
+          git config --global user.email 'bot@architect.alpha'
+          git add .
+          git commit -m "Vault Update: archive polymarket data $(date +%F)" || exit 0
+          git push
+
+      - name: 🧹 Sync Deletions to Scraper Repo
+        run: |
+          # 将删除操作和 .gitkeep 文件的状态推回当前仓库
+          git config --global user.name 'Architect Bot'
+          git config --global user.email 'bot@architect.alpha'
+          git add data/
+          git commit -m "Cleanup: Data moved to Central Bank and local wiped $(date +%F)" || exit 0
+          git push
