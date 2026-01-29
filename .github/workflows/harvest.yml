@@ -2,22 +2,33 @@ name: 🏦 Central Bank Harvest
 
 on:
   workflow_run:
-    workflows: ["⚔️ PolyData Dual-Engine System"] # 必须匹配主任务 name
+    # 必须匹配主任务 name
+    workflows: ["⚔️ PolyData Dual-Engine System"] 
     types:
       - completed
-  workflow_dispatch: # 🌟 手动运行按钮
+  workflow_dispatch: # 支持手动触发测试
 
 jobs:
   harvest:
-    # 手动触发或上游执行成功时运行
+    # 只有手动触发或上游执行成功才运行
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     
     steps:
+      - name: ⏳ 2-Minute Buffer
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "Waiting 2 minutes for settlement..."
+            sleep 120
+          else
+            echo "Manual trigger, skipping wait."
+          fi
+
       - name: Checkout Scraper Repo
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.MY_PAT }} # 必须使用 PAT
+          token: ${{ secrets.MY_PAT }}
+          fetch-depth: 0
 
       - name: Checkout Central Bank
         uses: actions/checkout@v4
@@ -47,7 +58,6 @@ jobs:
         run: |
           git config --global user.name 'Architect Bot'
           git config --global user.email 'bot@architect.alpha'
-          # 将 data 目录下的删除变动同步回仓库
           git add data/
           git commit -m "Cleanup: Data flushed to Central Bank $(date +%F)" || exit 0
           git push
