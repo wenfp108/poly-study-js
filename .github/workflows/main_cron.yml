@@ -38,23 +38,3 @@ jobs:
       - name: 📡 Run Radar Engine
         run: node radar.js
 
-      # 🏦 Phase 3: 中央银行实时收割
-      - name: Checkout Central Bank
-        uses: actions/checkout@v4
-        with:
-          repository: wenfp108/Central-Bank
-          token: ${{ secrets.MY_PAT }}
-          path: central_bank
-
-      - name: 🏦 Archive to Central Bank
-        run: |
-          # 确保运行的是 .js 文件，与仓库中的脚本一致
-          node scripts/archive-poly-to-bank.js
-          
-          # 推送到中央银行
-          cd central_bank
-          git config --global user.name 'Architect Bot'
-          git config --global user.email 'bot@architect.alpha'
-          git add .
-          git commit -m "Vault Update: archive polymarket data $(date +%F)" || exit 0
-          git push
