@@ -1,0 +1,43 @@
+name: ⚔️ PolyData Dual-Engine System
+
+on:
+  schedule:
+    - cron: '15 * * * *'  # 每小时 15 分自动触发
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  engage_targets:
+    runs-on: ubuntu-latest
+    
+    # 设置全局环境变量，两个脚本都能用
+    env:
+      MY_PAT: ${{ secrets.MY_PAT }}
+      REPO_OWNER: ${{ github.repository_owner }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        # 这里会读取根目录唯一的 package.json
+        run: npm install
+
+      # 🔥 第一阶段：狙击手出动
+      - name: 🎯 Phase 1: Sniper Engine (Targeted Strike)
+        run: node sniper.js
+
+      # ⏳ 战术暂停：防止 GitHub API 并发限制或文件锁冲突
+      - name: ⏳ Tactical Pause
+        run: |
+          echo "Cooling down engines..."
+          sleep 10  # 暂停 10 秒
+
+      # 🔥 第二阶段：雷达扫描
+      - name: 📡 Phase 2: Radar Engine (Global Scan)
+        run: node radar.js
